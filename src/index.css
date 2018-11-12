@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-template-rows: 100vh;
+  grid-gap: 60px;
+  justify-content: center;
+}
+
+.chart-container {
+  position: relative;
+  align-self: center;
+  border-bottom: 2px solid #b0b0b0;
+  width: 300px;
+}
+
+.chart {
+  position: relative;
+  text-align: center;
+}
+
+.canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.chart--container {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.chart--title {
+  color: #b0b0b0;
+  text-transform: uppercase;
+  font-size: 20px;
+  margin: 3px 0;
+}
+
+.chart--amount {
+  font-size: 24px;
+  margin: 0;
+}
+
+.donut--container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.device--container {
+  font-size: 15px;
+  padding-bottom: 10px;
+}
+
+.device--container:nth-child(1) {
+  grid-column: 2 / 3;
+  text-align: right;
+}
+
+.device--container:nth-child(2) {
+  grid-column: 1 / 2;
+  grid-row-start: 1;
+}
+
+.device-name {
+  font-weight: 600;
+}
+
+.device-data {
+  margin-top: 5px;
+}
+
+.device-data-left {
+  margin-right: 10px;
+}
+
+.device-data-right {
+  color: #b0b0b0;
+  margin-top: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  #container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: unset;
+    overflow-x: auto;
+    width: 300px;
+    -webkit-overflow-scrolling: touch;
+    -webkit-scroll-snap-points-x: repeat(300px);
+    -ms-scroll-snap-points-x: repeat(300px);
+    scroll-snap-points-x: repeat(300px);
+    -webkit-scroll-snap-type: mandatory;
+    -ms-scroll-snap-type: mandatory;
+    scroll-snap-type: mandatory;
+  }
+
+  .donut--wrapper {
+    flex-shrink: 0;
+  }
+
+  .donut--wrapper:nth-child(2) {
+    margin: 0 40px;
+  }
+}

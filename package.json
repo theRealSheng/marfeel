@@ -1,0 +1,33 @@
+{
+  "name": "marfeel",
+  "version": "1.0.0",
+  "description": "Marfeel challenge",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --open",
+    "test": "mocha -s",
+    "watch": "webpack --watch"
+  },
+  "author": "Sheng",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^5.7.0",
+    "d3-scale": "^2.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
