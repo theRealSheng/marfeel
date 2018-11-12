@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Sans-serif;
 }
 
 #container {
@@ -10,7 +10,7 @@ body {
   justify-content: center;
 }
 
-.chart-container {
+.chart--container {
   position: relative;
   align-self: center;
   border-bottom: 2px solid #b0b0b0;
@@ -30,88 +30,45 @@ body {
   border-radius: 50%;
 }
 
-.chart--container {
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-
-.chart--title {
-  color: #b0b0b0;
-  text-transform: uppercase;
-  font-size: 20px;
-  margin: 3px 0;
-}
-
-.chart--amount {
-  font-size: 24px;
-  margin: 0;
-}
-
-.donut--container {
+.footer--data {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.device--container {
-  font-size: 15px;
+.footer--chart {
+  font-size: 18px;
   padding-bottom: 10px;
+  padding-top: 5px;
 }
 
-.device--container:nth-child(1) {
+.footer--chart:nth-child(1) {
   grid-column: 2 / 3;
   text-align: right;
 }
 
-.device--container:nth-child(2) {
+.footer--chart:nth-child(2) {
   grid-column: 1 / 2;
   grid-row-start: 1;
 }
 
 .device-name {
-  font-weight: 600;
+  font-weight: 900;
 }
 
-.device-data {
+.footer--device {
+  font-weight: 900;
+}
+
+.footer--chart--container {
+  margin-top: 10px;
+}
+
+.footer--chart-percentage {
+  margin-right: 2px;
+  color: #4a4747;
+}
+
+.footer--chart-amount {
+  color: #cec3c3;
   margin-top: 5px;
-}
-
-.device-data-left {
-  margin-right: 10px;
-}
-
-.device-data-right {
-  color: #b0b0b0;
-  margin-top: 5px;
-}
-
-@media only screen and (max-width: 600px) {
-
-  #container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: unset;
-    overflow-x: auto;
-    width: 300px;
-    -webkit-overflow-scrolling: touch;
-    -webkit-scroll-snap-points-x: repeat(300px);
-    -ms-scroll-snap-points-x: repeat(300px);
-    scroll-snap-points-x: repeat(300px);
-    -webkit-scroll-snap-type: mandatory;
-    -ms-scroll-snap-type: mandatory;
-    scroll-snap-type: mandatory;
-  }
-
-  .donut--wrapper {
-    flex-shrink: 0;
-  }
-
-  .donut--wrapper:nth-child(2) {
-    margin: 0 40px;
-  }
 }

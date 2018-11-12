@@ -1,5 +1,5 @@
 import DonutChart from '../components/chart/d3/donutChart';
-import LineChart from '../components/chart/d3/lineChart';
+import LineChart from '../components/chart/canvas/lineChart';
 
 class View {
   constructor(data) {
@@ -12,18 +12,18 @@ class View {
 
   createHMTL(html) {
     const div = document.createElement('div');
-    div.classList.add('chart-container');
+    div.classList.add('chart--container');
     div.innerHTML = html;
     return div;
   }
 
-  createFooter(data, chartColor) {
+  createChartFooter(data, chartColor) {
     return data.devices.map((item, index) => 
-        `<div class="device--container">
-          <div class="device-name" style="color:${chartColor[data.title][item.name]}">${item.name}</div>
-          <div class="device-data">
-            <span class="device-data-left">${data.calculateRatio(index) + '%'}</span> 
-            <span class="device-data-right">${this.formatAmount(item.amount)}</span>
+        `<div class="footer--chart">
+          <div class="footer--device" style="color:${chartColor[data.title][item.name]}">${item.name}</div>
+          <div class="footer--chart--container">
+            <span class="footer--chart-percentage">${data.calculateRatio(index) + '%'}</span> 
+            <span class="footer--chart-amount">${this.formatAmount(item.amount)}${data.title==="Revenue"? ' €': ''}</span>
           </div>        
         </div>`
       ).join('')
@@ -32,14 +32,10 @@ class View {
   createHTMLChart(data, chartColor) {
     return (
       `<div class="chart" id="donut-chart-${data.id}">
-      <canvas class="canvas" id="line-chart-${data.id}"></canvas>
+        <canvas class="canvas" id="line-chart-${data.id}"></canvas>
       </div>
-      <div class="chart--container">
-        <h2 class="chart--title">${data.title}</h2>
-        <p class="chart--amount">${this.formatAmount(data.calculateTotal())} ${data.title==='Revenue'? '€' : ''}</p>
-      </div>
-      <div class="donut--container">
-        ${this.createFooter(data, chartColor)}
+      <div class="footer--data">
+        ${this.createChartFooter(data, chartColor)}
       </div>`
     );
   }
@@ -67,21 +63,22 @@ class View {
     const html = this.createHMTL(this.createHTMLChart(this.data, chartColor));
     document.getElementById('container').appendChild(html);
 
+    // map the data per device
     const donutData = this.data.devices.map(data => ({
       name: data.name,
       value: data.amount,
-      color: chartColor[this.data.title][data.name]
+      color: chartColor[this.data.title][data.name],
     }));
 
-    const lineData = {
-      values: this.data.history,
-      title: this.data.title,
-      total: this.data.calculateTotal(),
-      color: chartColor[this.data.title]['default']
-    };
+    // consolidate the data to create chart
+    const data = {
+      title: this.data.title.toUpperCase(),
+      total: this.formatAmount(this.data.calculateTotal()),
+      donutLine: donutData
+    }
 
-    this.donutChart = DonutChart(donutData, this.data.id);
-    this.lineChart = LineChart(lineData, this.data.id);
+    this.donutChart = DonutChart(data, this.data.id);
+    this.lineChart = LineChart(chartColor[this.data.title]['default'], this.data.id)
   }
 }
 
