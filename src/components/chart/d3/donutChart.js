@@ -24,14 +24,13 @@ const DonutChart = (data, id) => {
     
     // create donut
     var g = svg.selectAll("svg")
-    .data(pie(data.donutLine))
+    .data(pie(data.donutData))
     .enter()
     .append("g")
     
     g.append("path")
     .attr("d", arc)
     .style("fill", d => d3.color(d.data.color))
-    
     
     g.append("text")
     .attr("text-anchor", "middle")

@@ -74,7 +74,7 @@ class View {
     const data = {
       title: this.data.title.toUpperCase(),
       total: this.formatAmount(this.data.calculateTotal()),
-      donutLine: donutData
+      donutData
     }
 
     this.donutChart = DonutChart(data, this.data.id);
