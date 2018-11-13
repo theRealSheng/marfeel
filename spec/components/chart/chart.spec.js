@@ -1,11 +1,8 @@
-// import ChartComponent from '../../../src/components/chart/chart-component';
 
 // describe('Chart component', function (done) {
-//   beforeEach(async function () {
-//     ChartComponent.fetchData()
-//       .then((res) => {
-//         expect(res).toBeTruthy();
-//         done()
-//       })
-//   })
+//   if('should fetch data from API', function(done) {
+//     spyOn(window, 'fetchData').and.returnValue(Promise.resolve(
+//       new Response('object')
+//     ))
+//   });
 // });

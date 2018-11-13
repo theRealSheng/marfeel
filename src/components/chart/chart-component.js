@@ -8,7 +8,7 @@ class ChartComponent {
 
   async fetchData() {
     try {
-      const response = await fetch('./data.json', { mode: 'no-cors' });
+      const response = await this.getData();
       let data = await response.json();
       
       if (!data) {
@@ -23,6 +23,10 @@ class ChartComponent {
       console.log(err);
       throw new TypeError("Oops! Something went wrong, please try again");
     }
+  }
+
+  getData() {
+    return fetch('./data.json', { mode: 'no-cors' });
   }
 
   createChart (info) {
