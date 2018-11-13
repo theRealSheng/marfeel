@@ -26,7 +26,7 @@ class ChartComponent {
   }
 
   createChart (info) {
-    return info.data.map((entry, index) => new Chart(entry, index))
+    return info.data.map((data, index) => new Chart(data, index))
   }
 
   createView (data) {
