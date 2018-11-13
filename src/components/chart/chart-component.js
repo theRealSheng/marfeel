@@ -6,18 +6,23 @@ class ChartComponent {
     this.fetchData();
   }
 
-  fetchData() {
-    return fetch('./data.json', { mode: 'no-cors' })
-      .then(res => {
-        let contentType = res.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-          return res.json();
-        }
+  async fetchData() {
+    try {
+      const response = await fetch('./data.json', { mode: 'no-cors' });
+      let data = await response.json();
+      
+      if (!data) {
         throw new TypeError("Sorry! There was a problem retrieving the data, please try again");
-      })
-      .then(result => this.createChart(result))
-      .then(result => this.createView(result))
-      .catch(err => console.log(err))
+      } else {
+        const charts = await this.createChart(data)
+        if(charts) {
+          return this.createView(charts)
+        }
+      }
+    } catch(err) {
+      console.log(err);
+      throw new TypeError("Oops! Something went wrong, please try again");
+    }
   }
 
   createChart (info) {
